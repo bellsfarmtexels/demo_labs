@@ -1,0 +1,29 @@
+newvms:
+- {
+    template_name: skunkworks_ubuntu22.04,
+    template_datacenter: Datacenter,
+    template_disksize: 100,
+    new_vm_name: lin01-deadpoolmaurice4,
+    new_vm_datacenter: Datacenter,
+    new_vm_cluster : Cluster,
+    new_vm_folder: /testvms,
+    new_vm_datastore: vsanDatastore,
+    new_vm_cpu: 2,
+    new_vm_cpu_cores_per_socket: 2,    
+    new_vm_memory_mb: 4096,
+    new_vm_network: VM Network
+  }
+- {
+   template_name: skunkworks_ubuntu22.04,
+   template_datacenter: Datacenter,
+   template_disksize: 100,
+   new_vm_name: lin02-deadpoolmaurice5,
+   new_vm_datacenter: Datacenter,
+   new_vm_cluster : Cluster,
+   new_vm_folder: /testvms,
+   new_vm_datastore: vsanDatastore,
+   new_vm_cpu: 2,
+   new_vm_cpu_cores_per_socket: 2,
+   new_vm_memory_mb: 4096,
+   new_vm_network: VM Network
+   }
