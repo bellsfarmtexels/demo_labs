@@ -3,20 +3,20 @@
   hosts: localhost
   gather_facts: no
   vars:
-    vcenter_hostname: "your-vcenter-hostname"
-    vcenter_username: "your-vcenter-username"
-    vcenter_password: "your-vcenter-password"
-    cluster_name: "your-cluster-name"
-    datastore_name: "your-datastore-name"
-    network_name: "your-vm-network"
-    template_name: "your-template-name"
-    vm_folder: "your-vm-folder"
-    vm_username: "your-vm-username"
-    vm_password: "your-vm-password"
-    master_ip: "master-ip-address"
+    vcenter_hostname: "vcsa-1.demo.local"
+    vcenter_username: "administrator@vsphere.local"
+    vcenter_password: "Password123!"
+    cluster_name: "Cluster"
+    datastore_name: "vsanDatastore"
+    network_name: "dpg-storage-data01"
+    template_name: "UBUNTU22041"
+    vm_folder: "VM"
+    vm_username: "demouser"
+    vm_password: "Password123!"
+    master_ip: "192.168.1.21"
     worker_ips:
-      - "worker-ip-address-1"
-      - "worker-ip-address-2"
+      - "192.168.1.22
+      - "192.168.1.23"
 
   tasks:
     - name: Connect to vCenter Server
@@ -49,8 +49,8 @@
             mac: "00:50:56:00:00:01"
             ip: "{{ master_ip }}"
             netmask: "255.255.255.0"
-            gateway: "your-gateway"
-            dns_servers: "your-dns-server"
+            gateway: "192.168.1.1"
+            dns_servers: "192.168.1.2"
         wait_for_ip_address: yes
         vm_extra_config:
           vcpu.hotadd: yes
@@ -86,8 +86,8 @@
             mac: "00:50:56:00:00:0{{ loop.index + 1 }}"
             ip: "{{ worker_ips[loop.index] }}"
             netmask: "255.255.255.0"
-            gateway: "your-gateway"
-            dns_servers: "your-dns-server"
+            gateway: "192.168.1.1"
+            dns_servers: "192.168.1.2"
         wait_for_ip_address: yes
         vm_extra_config:
           vcpu.hotadd: yes
