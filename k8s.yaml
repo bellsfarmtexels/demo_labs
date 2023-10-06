@@ -10,7 +10,7 @@
     datastore_name: "vsanDatastore"
     network_name: "dpg-storage-data01"
     template_name: "UBUNTU22041"
-    vm_folder: "VM"
+    vm_folder: "K8s"
     vm_username: "demouser"
     vm_password: "Password123!"
     master_ip: "192.168.1.21"
