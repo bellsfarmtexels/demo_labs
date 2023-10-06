@@ -15,7 +15,7 @@
     vm_password: "Password123!"
     master_ip: "192.168.1.21"
     worker_ips:
-      - "192.168.1.22
+      - "192.168.1.22"
       - "192.168.1.23"
 
   tasks:
