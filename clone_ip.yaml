@@ -32,8 +32,8 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: no
-        cluster: "your-cluster-name"
-        datastore: "your-datastore-name"
+        cluster: "Cluster"
+        datastore: "vsanDatastore"
         content_library: "{{ content_library_name }}"
         template: "{{ template_name }}"
         vm_name: "{{ vm_name }}"
