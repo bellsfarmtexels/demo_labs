@@ -13,6 +13,7 @@
     content_library_name: "SandBox-Local-Lib"
     template_name: "ubuntu_22.04_template"
     vm_name: "skwks-ubuntu01"
+    ansible_interpreter_path: "/usr/bin/python3"
 
   tasks:
     - name: Deploy VM from Content Library
