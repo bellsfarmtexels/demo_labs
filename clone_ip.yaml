@@ -7,6 +7,7 @@
     vcenter_hostname: "vcsa-1.demo.local"
     vcenter_username: "administrator@vsphere.local"
     vcenter_password: "Password123!"
+    vcenter_datacenter: "Datacenter"
     cluster_name: "Cluster"
     datastore_name: "vsanDatastore"
     content_library_name: "SandBox-Local-Lib"
@@ -20,6 +21,7 @@
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
         validate_certs: no
+        datacenter: "{{ vcenter_datacenter }}"
         cluster: "{{ cluster_name }}"
         datastore: "{{ datastore_name }}"
         content_library: "{{ content_library_name }}"
