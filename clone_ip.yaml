@@ -4,17 +4,17 @@
   gather_facts: no
 
   vars:
-    vcenter_hostname: "your-vcenter-hostname"
-    vcenter_username: "your-vcenter-username"
-    vcenter_password: "your-vcenter-password"
-    content_library_name: "your-content-library"
-    template_name: "your-template-name"
+    vcenter_hostname: "vcsa-1.demo.local"
+    vcenter_username: "administrator@vsphere.local"
+    vcenter_password: "Password123!"
+    content_library_name: "SandBox-Local-Lib"
+    template_name: "ubuntu_22.04"
     vm_name: "cloned-vm"
     new_ip_address: "192.168.1.100"  # Replace with your desired IP address
     subnet_mask: "255.255.255.0"
     gateway: "192.168.1.1"
     dns_servers:
-      - "8.8.8.8"
+      - "192.168.1.2"
 
   tasks:
     - name: Connect to vCenter Server
