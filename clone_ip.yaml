@@ -47,3 +47,4 @@
         ip addr add {{ new_ip_address }}/{{ subnet_mask }} dev ens160 &&
         ip route add default via {{ gateway }}
       when: ansible_os_family == "Debian"
+      when: cloned_vmware.vmware_vm.name == vm_name
