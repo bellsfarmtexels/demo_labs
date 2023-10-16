@@ -25,6 +25,7 @@
         validate_certs: no
       delegate_to: localhost
       register: vcenter_connected
+      name: "swks-ubuntu-01"
 
     - name: Clone VM from Content Library
       vmware_deploy_ovf:
@@ -47,4 +48,3 @@
         ip addr add {{ new_ip_address }}/{{ subnet_mask }} dev ens160 &&
         ip route add default via {{ gateway }}
       when: ansible_os_family == "Debian"
-      when: cloned_vm.vmware_vm.name == vm_name
