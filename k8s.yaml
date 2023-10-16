@@ -9,7 +9,7 @@
     cluster_name: "Cluster"
     datastore_name: "vsanDatastore"
     network_name: "dpg-storage-data01"
-    template_name: "UBUNTU22041"
+    template_name: "ubuntu_22.04"
     vm_folder: "K8s"
     vm_username: "demouser"
     vm_password: "Password123!"
