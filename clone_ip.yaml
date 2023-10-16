@@ -1,50 +1,22 @@
 ---
-- name: Clone Ubuntu VM from Content Library and Set IP Address
+- name: Deploy Ubuntu VM from VMware Content Library
   hosts: localhost
   gather_facts: no
 
-  vars:
-    vcenter_hostname: "vcsa-1.demo.local"
-    vcenter_username: "administrator@vsphere.local"
-    vcenter_password: "Password123!"
-    content_library_name: "SandBox-Local-Lib"
-    template_name: "ubuntu_22.04"
-    vm_name: "ubuntu-bell-01"
-    new_ip_address: "192.168.1.100"  # Replace with your desired IP address
-    subnet_mask: "255.255.255.0"
-    gateway: "192.168.1.1"
-    dns_servers:
-      - "192.168.1.2"
-
   tasks:
-    - name: Connect to vCenter Server
-      vmware_guest:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
-        validate_certs: no
-      delegate_to: localhost
-      register: vcenter_connected
-      name: "swks-ubuntu-01"
-
     - name: Clone VM from Content Library
-      vmware_deploy_ovf:
-        hostname: "{{ vcenter_hostname }}"
-        username: "{{ vcenter_username }}"
-        password: "{{ vcenter_password }}"
+      community.vmware.vmware_vm_vm_drs_rules:
+        hostname: "{{ vcsa-1.demo.local }}"
+        username: "{{ administrator@vsphere.local }}"
+        password: "{{ Password123! }}"
         validate_certs: no
-        cluster: "Cluster"
-        datastore: "vsanDatastore"
-        content_library: "{{ content_library_name }}"
-        template: "{{ template_name }}"
-        vm_name: "{{ name }}"
-        wait_for_ip_address: yes
-        power_on: yes
+        datacenter_name: "Your-Datacenter"
+        cluster_name: "Cluster"
+        vm_name: "skwks-ubuntu01"
+        state: poweredon
+        from_vm:
+          library: "SandBox-Local-Lib"
+          item_name: "ubuntu_22.04"
+          item_revision: "latest"  # or specify the desired revision number
+        wait_for_ip_address: no
       delegate_to: localhost
-
-    - name: Configure IP address on the cloned VM
-      ansible.builtin.command: >
-        ip addr flush dev ens160 &&
-        ip addr add {{ new_ip_address }}/{{ subnet_mask }} dev ens160 &&
-        ip route add default via {{ gateway }}
-      when: ansible_os_family == "Debian"
