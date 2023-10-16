@@ -10,7 +10,7 @@
     cluster_name: "Cluster"
     datastore_name: "vsanDatastore"
     content_library_name: "SandBox-Local-Lib"
-    template_name: "ubuntu_22.04"
+    template_name: "ubuntu_22.04_template"
     vm_name: "skwks-ubuntu01"
 
   tasks:
