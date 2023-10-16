@@ -16,7 +16,7 @@
 
   tasks:
     - name: Deploy VM from Content Library
-      community.vmware.vmware_content_deploy_ovf_template:
+      community.vmware.vmware_content_deploy_template:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
