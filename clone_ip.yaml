@@ -27,5 +27,5 @@
         content_library: "{{ content_library_name }}"
         template: "{{ template_name }}"
         vm_name: "{{ vm_name }}"
-        power_on: yes
+        state: poweredon
       delegate_to: localhost
