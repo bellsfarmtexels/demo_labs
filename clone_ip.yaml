@@ -1,0 +1,49 @@
+---
+- name: Clone Ubuntu VM from Content Library and Set IP Address
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    vcenter_hostname: "your-vcenter-hostname"
+    vcenter_username: "your-vcenter-username"
+    vcenter_password: "your-vcenter-password"
+    content_library_name: "your-content-library"
+    template_name: "your-template-name"
+    vm_name: "cloned-vm"
+    new_ip_address: "192.168.1.100"  # Replace with your desired IP address
+    subnet_mask: "255.255.255.0"
+    gateway: "192.168.1.1"
+    dns_servers:
+      - "8.8.8.8"
+
+  tasks:
+    - name: Connect to vCenter Server
+      vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+      delegate_to: localhost
+      register: vcenter_connected
+
+    - name: Clone VM from Content Library
+      vmware_deploy_ovf:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: no
+        cluster: "your-cluster-name"
+        datastore: "your-datastore-name"
+        content_library: "{{ content_library_name }}"
+        template: "{{ template_name }}"
+        vm_name: "{{ vm_name }}"
+        wait_for_ip_address: yes
+        power_on: yes
+      delegate_to: localhost
+
+    - name: Configure IP address on the cloned VM
+      ansible.builtin.command: >
+        ip addr flush dev ens160 &&
+        ip addr add {{ new_ip_address }}/{{ subnet_mask }} dev ens160 &&
+        ip route add default via {{ gateway }}
+      when: ansible_os_family == "Debian"
