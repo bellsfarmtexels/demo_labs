@@ -5,7 +5,7 @@
 
   vars:
     vcenter_hostname: "vcas-1.demo.local"
-    vcenter_username: "administrator@vspherelocal"
+    vcenter_username: "administrator@vsphere.local"
     vcenter_password: "Password123!"
     cluster_name: "Cluster"
     datastore_name: "vsanDatastore"
